@@ -7,6 +7,9 @@ constexpr int KEY=0xab;
 
 using SeqId = int32_t;
 
+#pragma pack(push)  
+#pragma pack(1) 
+
 struct MsgData
 {
     uint8_t name[NAME_SIZE];
@@ -18,3 +21,5 @@ struct Msg
     MsgData data;
     uint8_t pwd;
 };
+
+#pragma pack(pop)

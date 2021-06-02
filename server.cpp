@@ -163,6 +163,10 @@ void DeviceRepo::update( const Name& name, SeqId seqId )
         dev->incCounter();
         dev->setSeq( seqId );
     }
+    else
+    {
+        fprintf( stderr, "invalid seq number \n");
+    }
 }
 
 void DeviceRepo::print()
