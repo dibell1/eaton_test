@@ -216,9 +216,7 @@ int main(int argc, char *argv[])
     Parser parser( pwd );
     DeviceRepo repo;
 
-    UdpProvider prov = std::move(dataProvider);
-
-    prov.start( [&parser,&repo] (const int8_t* data, size_t size) 
+    dataProvider.start( [&parser,&repo] (const int8_t* data, size_t size) 
     {
         size_t proc;
         Name name;
