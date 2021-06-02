@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
     // get name
     const char* name = argv[3];
     size_t name_len = strlen(name);
-    if ( name_len == 0 || name_len > NAME_SIZE-1 )
+    if ( name_len == 0 || name_len > ( NAME_SIZE-1 ) )
     {
         fprintf( stderr, "ERROR, wrong device name.");
         exit(1); 
