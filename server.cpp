@@ -229,8 +229,6 @@ int main(int argc, char *argv[])
             bool valid = parser.parse( data, size, name, seq, value, proc );
             if ( valid )
             {
-                printf("value %d \n", value);
-                
                 repo.update( name, seq, value );
             }
          
