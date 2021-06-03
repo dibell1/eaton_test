@@ -48,7 +48,7 @@ class DeviceRepo
 {
     using DeviceCollection = std::unordered_map<Name, std::unique_ptr<Device>>;
 public:
-    void update( const Name& name, SeqId seqId );
+    void update( const Name& name, SeqId seqId, Value value );
     void print();
 
 private:
@@ -60,7 +60,7 @@ class Parser
 public:
     Parser( const char *pwd) : _pwd( pwd ) {}
 
-    bool parse( const int8_t* data, size_t len, Name& name, SeqId& seq, size_t& proc_len );
+    bool parse( const int8_t* data, size_t len, Name& name, SeqId& seq, Value& value, size_t& proc_len );
 
 private:
     std::string _pwd;

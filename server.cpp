@@ -103,7 +103,7 @@ void UdpProvider::stop()
 
 /*******************Raw data parser*******************/
 
-bool Parser::parse( const int8_t* data, size_t len, Name& name, SeqId& seq, size_t& proc_len )
+bool Parser::parse( const int8_t* data, size_t len, Name& name, SeqId& seq, Value& value, size_t& proc_len )
 {
     proc_len = 0;
     bool ret = false;
@@ -127,6 +127,7 @@ bool Parser::parse( const int8_t* data, size_t len, Name& name, SeqId& seq, size
         {
             name = (const char*)msg->data.name; 
             seq = msg->data.seqId;
+            value = msg->data.value;
             ret = true;
         }
         else
@@ -142,7 +143,7 @@ bool Parser::parse( const int8_t* data, size_t len, Name& name, SeqId& seq, size
 
 /*******************DeviceRepository*******************/
 
-void DeviceRepo::update( const Name& name, SeqId seqId )
+void DeviceRepo::update( const Name& name, SeqId seqId, Value value )
 {
     Device* dev;
     DeviceCollection::const_iterator it = _devices.find(name);
@@ -221,13 +222,16 @@ int main(int argc, char *argv[])
         size_t proc;
         Name name;
         SeqId seq;
+        Value value;
         
         do
         {
-            bool valid = parser.parse( data, size, name, seq, proc );
+            bool valid = parser.parse( data, size, name, seq, value, proc );
             if ( valid )
             {
-                repo.update( name, seq );
+                printf("value %d \n", value);
+                
+                repo.update( name, seq, value );
             }
          
             size -= proc;

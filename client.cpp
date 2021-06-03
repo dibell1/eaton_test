@@ -72,6 +72,7 @@ int main(int argc, char *argv[])
     
     memcpy( msg.data.name, name, strlen(name) );
     msg.data.seqId = seqId;
+    msg.data.value = 1234; // some mesurement
 
     // compute crc hash of msg + pwd
     uint8_t buff[256];
